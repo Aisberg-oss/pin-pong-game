@@ -11,3 +11,4 @@ while green_flag:
             green_flag = False
     pygame.display.update()
     clock.tick(50)
+    #its a testing of the github so theres no game today
