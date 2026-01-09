@@ -24,3 +24,22 @@ class Player(GameSprite):
             self.rect.y -= self.speed
         if button1[K_DOWN]:
             self.rect.y += self.speed
+
+class Ball(GameSprite):
+    def moving(self):
+        self.rect.x -= self.speed
+        self.rect.y -= self.speed
+    def wall_touch(self):
+        if self.rect.y >= 500:
+            self.rect.y -= self.speed
+            self.rect.x -= self.speed
+        if self.rect.y <= 500:
+            self.rect.y += self.speed
+            self.rect.x += self.speed
+    def platform_touch(self, platform1, platform2):
+        if sprite.spritecollide(self, platform1, False):
+            self.rect.x += self.speed
+            self.rect.y += self.speed
+        if sprite.spritecollide(self, platform2, False):
+            self.rect.x -= self.speed
+            self.rect.y -= self.speed
