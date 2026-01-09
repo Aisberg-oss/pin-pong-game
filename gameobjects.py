@@ -1,3 +1,5 @@
+import pygame
+
 class GameSprite(pygame.sprite.Sprite):
     def __init__(self, x, y, speed, image, w, h, window):
         super().__init__()
