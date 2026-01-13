@@ -15,16 +15,16 @@ class GameSprite(pygame.sprite.Sprite):
 
 class Player(GameSprite):
     def move_player1(self):
-        button = key.get_pressed()
-        if button[K_w]:
+        button = pygame.key.get_pressed()
+        if button[pygame.K_w] and self.rect.y >= 0:
             self.rect.y -= self.speed
-        if button[K_s]:
+        if button[pygame.K_s] and self.rect.y <= 400:
             self.rect.y += self.speed
     def move_player2(self):
-        button1 = key.get_pressed()
-        if button1[K_UP]:
+        button1 = pygame.key.get_pressed()
+        if button1[pygame.K_UP] and self.rect.y >= 0:
             self.rect.y -= self.speed
-        if button1[K_DOWN]:
+        if button1[pygame.K_DOWN] and self.rect.y <= 400:
             self.rect.y += self.speed
 
 class Ball(GameSprite):
