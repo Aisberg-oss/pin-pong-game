@@ -6,7 +6,7 @@ clock = pygame.time.Clock()
 
 player1 = Player(10,50, 3, 'pictures/rocket.png', 10, 100, window)
 player2 = Player(480,300, 3, 'pictures/rocket.png', 10, 100, window)
-ball = Ball(100,100, 3, 'pictures/ball.png', 50, 10, window)
+ball = Ball(500,500, 3, 'pictures/ball.png', 50, 10, window)
 
 green_flag = True
 while green_flag:
@@ -18,6 +18,9 @@ while green_flag:
     player1.move_player1()
     player2.move_player2()
     player2.show_rect()
+    ball.show_rect()
+    ball.moving()
+    ball.wall_touch()
     pygame.display.update()
     window.fill((200,200,200))
     #its a testing of the github so theres no game today

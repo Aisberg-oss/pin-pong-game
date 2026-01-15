@@ -10,6 +10,8 @@ class GameSprite(pygame.sprite.Sprite):
         self.rect.y = y
         self.rect.h = h
         self.speed = speed
+        self.speed_x = speed
+        self.speed_y = speed
     def show_rect(self):
         self.window.blit(self.image, (self.rect.x, self.rect.y))
 
@@ -29,19 +31,15 @@ class Player(GameSprite):
 
 class Ball(GameSprite):
     def moving(self):
-        self.rect.x -= self.speed
-        self.rect.y -= self.speed
+        self.rect.x -= self.speed_x
+        self.rect.y -= self.speed_y
     def wall_touch(self):
+        if self.rect.y <= 0:
+            self.speed_y *= -1
         if self.rect.y >= 500:
-            self.rect.y -= self.speed
-            self.rect.x -= self.speed
-        if self.rect.y <= 500:
-            self.rect.y += self.speed
-            self.rect.x += self.speed
+            self.speed_y *= -1
     def platform_touch(self, platform1, platform2):
-        if sprite.spritecollide(self, platform1, False):
-            self.rect.x += self.speed
-            self.rect.y += self.speed
-        if sprite.spritecollide(self, platform2, False):
-            self.rect.x -= self.speed
-            self.rect.y -= self.speed
+        if pygame.sprite.spritecollide(self, platform1, False):
+            self.rect.x *= -1
+        if pygame.sprite.spritecollide(self, platform2, False):
+            self.rect.x *= -1
