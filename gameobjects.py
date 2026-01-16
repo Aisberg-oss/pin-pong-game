@@ -1,4 +1,5 @@
 import pygame
+pygame.init()
 
 class GameSprite(pygame.sprite.Sprite):
     def __init__(self, x, y, speed, image, w, h, window):
@@ -36,10 +37,15 @@ class Ball(GameSprite):
     def wall_touch(self):
         if self.rect.y <= 0:
             self.speed_y *= -1
-        if self.rect.y >= 500:
+        if self.rect.y >= 465:
             self.speed_y *= -1
     def platform_touch(self, platform1, platform2):
-        if pygame.sprite.spritecollide(self, platform1, False):
-            self.rect.x *= -1
-        if pygame.sprite.spritecollide(self, platform2, False):
-            self.rect.x *= -1
+        if pygame.sprite.collide_rect(self, platform1):
+            self.speed_x *= -1
+        if pygame.sprite.collide_rect(self, platform2):
+            self.speed_x *= -1
+    def p_win(self, wind):
+        font = pygame.font.Font(None, 70)
+        p1_won = font.render('RIGHT PLAYER WON', True, (0, 0, 0))
+        if self.rect.x < 0:
+            wind.blit(p1_won, (250,250))
