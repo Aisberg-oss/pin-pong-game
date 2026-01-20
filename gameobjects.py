@@ -46,6 +46,12 @@ class Ball(GameSprite):
             self.speed_x *= -1
     def p_win(self, wind):
         font = pygame.font.Font(None, 70)
+        p2_won = font.render('LEFT PLAYER WON', True, (0,0,0))
         p1_won = font.render('RIGHT PLAYER WON', True, (0, 0, 0))
         if self.rect.x < 0:
-            wind.blit(p1_won, (250,250))
+            wind.blit(p1_won, (0,250))
+            return False
+        if self.rect.x >= 500:
+            wind.blit(p2_won, (0, 250))
+            return False
+        return True
